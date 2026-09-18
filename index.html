@@ -6,6 +6,21 @@
   <title>Elyes Mlik | Co-fondateur Technique @ Sehha • Développement Mobile & Systèmes Embarqués</title>
   <link rel="icon" type="image/png" href="sehha_icon.png">
   
+  <!-- Early theme init — prevents flash of wrong theme on reload -->
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var html = document.documentElement;
+      if (saved === 'light') {
+        html.classList.remove('dark');
+        html.classList.add('light');
+      } else {
+        html.classList.add('dark');
+        html.classList.remove('light');
+      }
+    })();
+  </script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -143,6 +158,138 @@
       background: rgba(45, 191, 119, 0.3);
       border-radius: 4px;
     }
+
+    /* =========================================================
+       LIGHT MODE — Global overrides
+       The <html> element gets .light when light mode is active.
+       We override all hardcoded dark Tailwind utilities here.
+    ========================================================= */
+
+    /* Page background & base text */
+    .light body {
+      background-color: #F4FBF7 !important;
+      color: #0f172a !important;
+    }
+
+    /* Sticky header */
+    .light header {
+      background-color: rgba(244, 251, 247, 0.92) !important;
+      border-bottom-color: rgba(26, 155, 95, 0.18) !important;
+    }
+
+    /* Mobile menu drawer */
+    .light #mobileMenu {
+      background-color: #F4FBF7 !important;
+      border-top-color: rgba(26, 155, 95, 0.18) !important;
+    }
+
+    /* Language dropdown panel */
+    .light #langDropdownMenu {
+      background-color: #ffffff !important;
+      border-color: rgba(26, 155, 95, 0.2) !important;
+    }
+
+    /* Generic text overrides: white → near-black, slate-100/200/300/400 → darker slate */
+    .light .text-white,
+    .light .text-slate-100,
+    .light .text-slate-200 {
+      color: #0f172a !important;
+    }
+    .light .text-slate-300 {
+      color: #334155 !important;
+    }
+    .light .text-slate-400 {
+      color: #475569 !important;
+    }
+    .light nav .text-slate-300 {
+      color: #334155 !important;
+    }
+
+    /* Nav hover states */
+    .light nav a:hover,
+    .light #mobileMenu a:hover {
+      background-color: rgba(26, 155, 95, 0.08) !important;
+      color: #0f172a !important;
+    }
+    .light nav a:hover.text-emerald-400,
+    .light nav a.text-emerald-400:hover {
+      color: #15803d !important;
+    }
+
+    /* Buttons / icon buttons with glass bg */
+    .light .bg-white\/\[0\.04\],
+    .light .bg-white\/\[0\.05\],
+    .light .bg-white\/\[0\.06\],
+    .light .bg-white\/\[0\.08\],
+    .light .bg-white\/\[0\.10\],
+    .light .bg-white\/\[0\.1\] {
+      background-color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    /* Borders glass */
+    .light .border-white\/\[0\.1\],
+    .light .border-white\/\[0\.06\] {
+      border-color: rgba(0, 0, 0, 0.1) !important;
+    }
+
+    /* Theme toggle button borders */
+    .light #themeToggle,
+    .light #langDropdownBtn,
+    .light #mobileMenuBtn {
+      border-color: rgba(26, 155, 95, 0.3) !important;
+      background-color: rgba(0, 0, 0, 0.04) !important;
+      color: #334155 !important;
+    }
+
+    /* Tech tag badges (bg-white/[0.05] pattern) */
+    .light span.bg-white\/\[0\.05\] {
+      background-color: rgba(26, 155, 95, 0.08) !important;
+      color: #15803d !important;
+    }
+
+    /* Section backgrounds — dark surface cards */
+    .light .bg-surface-dark,
+    .light .dark\:bg-surface-dark {
+      background-color: #F4FBF7 !important;
+    }
+    .light .bg-surface-card {
+      background-color: #ffffff !important;
+    }
+
+    /* Investor ribbon stays dark (it's a highlight) — keep its own bg, just soften */
+    .light aside[aria-label] {
+      background: linear-gradient(to right, #d1fae5, #ecfdf5, #d1fae5) !important;
+      border-bottom-color: rgba(26, 155, 95, 0.3) !important;
+    }
+    .light aside[aria-label] .text-slate-200,
+    .light aside[aria-label] .text-emerald-100 {
+      color: #064e3b !important;
+    }
+
+    /* Cards inside sections */
+    .light .rounded-2xl.bg-white\/\[0\.03\],
+    .light .rounded-xl.bg-white\/\[0\.03\],
+    .light .rounded-2xl.bg-white\/\[0\.04\],
+    .light .rounded-xl.bg-white\/\[0\.04\],
+    .light .rounded-2xl.bg-white\/\[0\.05\],
+    .light .rounded-xl.bg-white\/\[0\.05\] {
+      background-color: rgba(255, 255, 255, 0.85) !important;
+      border-color: rgba(26, 155, 95, 0.12) !important;
+    }
+
+    /* Stat numbers */
+    .light .text-slate-200.font-black {
+      color: #0f172a !important;
+    }
+
+    /* Profile card online dot border fix */
+    .light .border-surface-dark {
+      border-color: #F4FBF7 !important;
+    }
+
+    /* Sun icon: hide in light, show moon */
+    .light #themeToggle .fa-sun { display: none !important; }
+    .light #themeToggle .fa-moon { display: block !important; color: #64748b !important; }
   </style>
 </head>
 <body class="bg-surface-dark text-slate-100 dark:bg-surface-dark dark:text-slate-100 transition-colors duration-300 min-h-screen relative selection:bg-emerald-600 selection:text-white antialiased">
